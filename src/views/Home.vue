@@ -1,18 +1,29 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <h1>hello</h1>
+    <MovieCard v-for="movie in popularMovies" :param="movie.original_title" :key="movie.key"/>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import { getPopularMovies } from "@/services/movieService";
+import MovieCard from "../components/MovieCard.vue";
 
 export default defineComponent({
   name: 'Home',
   components: {
-    HelloWorld,
+    MovieCard
   },
+  data(){
+    return {
+      popularMovies: []
+    }
+  },
+  created() {
+    getPopularMovies().then((res) => {
+       this.popularMovies = res.results
+    })
+  }
 });
 </script>
