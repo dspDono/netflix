@@ -1,5 +1,6 @@
 <template>
-  <button class="bg-transparent hover:bg-white text-white hover:text-gray-800 py-2 px-4 border border-white hover:border-transparent rounded mr-5 mb-5">
+  <button class="bg-transparent hover:bg-white text-white hover:text-gray-800 py-2 px-4 border border-white hover:border-transparent rounded mr-5 mb-5"
+          :class="{'active': active, '': !active}">
     {{ name }}
   </button>
 </template>
@@ -8,7 +9,7 @@
 
 export default {
   name: "MovieFilter",
-  props: ['name', 'id'],
+  props: ['name', 'id', 'active'],
 }
 </script>
 

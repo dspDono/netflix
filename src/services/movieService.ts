@@ -37,7 +37,7 @@ export async function getPopularMovies() {
             api_key: api_key,
         }
     });
-    const popularMovies = response.data.results.splice(0, 3);
+    const popularMovies = response.data.results.splice(0, 4);
     const image = imgUrl + response.data.results[Math.floor(Math.random() * response.data.results.length)].poster_path;
 
     return { popularMovies, image };

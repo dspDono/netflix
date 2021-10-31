@@ -22,14 +22,22 @@ export const useMovieStore = defineStore('movie', {
         },
         async setGenres() {
             await getGenres().then((res) => {
-                this.genres = res
+                this.genres = res;
             }).catch((err) => {
                 console.log(err);
             })
         },
-        async setGenreMovie(id: string) {
+        async setGenreMovie(id: string, genre: any) {
             await getMovies(id).then((res) => {
                 this.movies = res;
+                if (genre.active === undefined) {
+                    this.genres.forEach((g) => {
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        delete g.active
+                    })
+                    genre.active = true;
+                }
             }).catch((err) => {
                 console.log(err)
             })

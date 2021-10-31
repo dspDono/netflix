@@ -4,7 +4,7 @@
       <div class="text-center pb-12">
         <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-white">Films populaires</h1>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <MovieCard v-for="movie in movieStore.movies" :key="movie.key" :poster="movie.poster_path"/>
       </div>
     </section>
