@@ -1,26 +1,33 @@
 <template>
-  <MovieCard v-for="movie in movies" :key="movie" :param="movie"/>
+  <div class="w-full bg-gray-800 min-h-screen bg-movie">
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
+      <div class="text-center pb-12">
+        <MovieFilter v-for="genre in movieStore.genres" :name="genre.name" :id="genre.id" @click="movieStore.setGenreMovie(genre.id)" :key="genre.key"></MovieFilter>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <MovieCard v-for="movie in movieStore.movies" :key="movie.key" :poster="movie.poster_path"/>
+      </div>
+    </section>
+  </div>
 </template>
 
-<script>
-import {getMovies} from "../services/movieService";
-import MovieCard from "../components/MovieCard";
+<script lang="ts">
+import MovieCard from "@/components/MovieCard";
+import { useMovieStore } from "@/store/movie";
+import MovieFilter from "@/components/MovieFilter"
 
 export default {
   components: {
-    MovieCard
+    MovieCard,
+    MovieFilter
   },
   name: "MovieList",
-  data() {
-    return {
-      movies: []
-    }
+  setup() {
+    const movieStore = useMovieStore();
+    movieStore.setMovies();
+    movieStore.setGenres();
+    return { movieStore }
   },
-  created() {
-    getMovies().then((res) => {
-      this.movies = res[0].borders;
-    })
-  }
 }
 </script>
 
