@@ -1,10 +1,18 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div>
+    <NavBar/>
+    <router-view/>
   </div>
-  <router-view/>
 </template>
+
+<script lang="ts">
+  import NavBar from "@/components/NavBar";
+  export default {
+    components: {
+      NavBar
+    }
+  }
+</script>
 
 <style lang="scss">
 #app {
@@ -15,16 +23,20 @@
   color: #2c3e50;
 }
 
-#nav {
+nav {
   padding: 30px;
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #ffffff;
 
     &.router-link-exact-active {
       color: #42b983;
     }
   }
+}
+.bg-movie {
+  margin-top: -128px;
+  padding-top: 128px;
 }
 </style>
