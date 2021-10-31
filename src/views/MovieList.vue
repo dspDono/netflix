@@ -18,9 +18,9 @@
 </template>
 
 <script lang="ts">
-import MovieCard from "@/components/MovieCard";
+import MovieCard from "@/components/MovieCard.vue";
 import { useMovieStore } from "@/store/movie";
-import MovieFilter from "@/components/MovieFilter"
+import MovieFilter from "@/components/MovieFilter.vue"
 
 export default {
   components: {
